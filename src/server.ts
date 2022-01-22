@@ -2,8 +2,9 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv';
 
+
 const app: express.Application = express()
-const port = process.env.PORT
+dotenv.config();
 const address: string = `Starting on port ${process.env.PORT}`
 
 
@@ -13,6 +14,6 @@ app.get('/', function (req: Request, res: Response) {
     res.send('Hello World!')
 })
 
-app.listen(port, function () {
+app.listen(process.env.PORT, function () {
     console.log(`starting app on: ${address}`)
 })
