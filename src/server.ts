@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 
 const app: express.Application = express()
 dotenv.config();
-const address: string = `Starting on port ${process.env.PORT}`
+const port = process.env.PORT || 3001
+const address: string = `Port ${process.env.PORT}`
 
 
 app.use(bodyParser.json())
