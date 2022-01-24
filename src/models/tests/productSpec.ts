@@ -17,10 +17,15 @@ describe('Product Model Defined', () => {
 })
 
 describe('Product Model CRUD', () => {
-    
+
     it('Create function should add a product', async () => {
         const result = await store.create({name: 'Herbal Tea', price: 10, category: 'drinks'})
         expect(result).toEqual({id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' })
+    })
+
+    it('Index function should return a list of products', async () => {
+        const result = await store.index()
+        expect(result).toEqual([{id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' }])
     })
 
     it('Show function should return the correct product', async () => {
@@ -28,8 +33,4 @@ describe('Product Model CRUD', () => {
         expect(result).toEqual({id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' })
     })
 
-    // it('Index function should return a list of products', async () => {
-    //     const result = await store.index()
-    //     expect(result).toEqual([{id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' }])
-    // })
 })
