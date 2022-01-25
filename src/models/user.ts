@@ -1,4 +1,7 @@
 import client from '../database'
+import bcrypt from 'bcrypt'
+
+const {pepper, saltRounds} = process.env
 
 export type User = {
     id?: Number;
@@ -34,11 +37,19 @@ export class UserStore{
 
     async create(user: User): Promise<User>{
         try{
+            
             const conn = await client.connect()
-            const sql = 'INSERT INTO users (firstName, lastName, password) VALUES ($1, $2, $3) RETURNING *;';
-            const result = await conn.query(sql, [user.firstname, user.lastname, user.password])
+            const sql = 'INSERT INTO users (firstName, lastName, password) VALUES ($1, $2, $3) RETURNING *;'
+
+            const hash = bcrypt.hashSync(
+                user.password + pepper, 
+                parseInt(saltRounds as string)
+            )
+
+            const result = await conn.query(sql, [user.firstname, user.lastname, hash])
             conn.release()
             return result.rows[0]
+
         }catch(err){
             throw new Error(`Could not create user. Error: ${err}`)
         }
