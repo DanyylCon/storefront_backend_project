@@ -29,7 +29,7 @@ describe('Product Model CRUD', () => {
     })
 
     it('Show function should return the correct product', async () => {
-        const result = await store.show(1)
+        const result = await store.show('1')
         expect(result).toEqual({id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' })
     })
 
