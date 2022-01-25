@@ -28,7 +28,7 @@ describe('User Model CRUD', () => {
     })
 
     it('Show function should display the correct user', async () => {
-        const result = await store.show(1)
+        const result = await store.show('1')
         expect(result).toEqual({id: 1, firstname: 'Keanu', lastname: 'Reeves', password: 'matrix'})
     })
 })

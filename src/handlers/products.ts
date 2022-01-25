@@ -9,8 +9,7 @@ const index = async (req: Request, res: Response) => {
 }
 
 const show = async (req: Request, res: Response) => {
-    const id = req.query.id as string
-    //const id = req.query.id
+    const id = req.params.id as string
     const product = await store.show(id)
     res.json(product)
 }
