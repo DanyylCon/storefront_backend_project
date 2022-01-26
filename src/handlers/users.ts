@@ -20,10 +20,18 @@ const create = async (req: Request, res: Response) => {
     res.json(newUser)
 }
 
+const authenticate = async (req: Request, res: Response) => {
+    const firstname = req.body.firstname;
+    const password = req.body.password;
+    const user = store.authenticate(firstname, password)
+    res.json(user)
+}
+
 const userRoutes = (app: express.Application) => {
     app.get('/users', index)
     app.get('/users/:id', show)
     app.post('/users', create)
+    app.post('/users/auth', authenticate)
 }
 
 export default userRoutes
