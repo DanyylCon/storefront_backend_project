@@ -23,7 +23,7 @@ const create = async (req: Request, res: Response) => {
 const authenticate = async (req: Request, res: Response) => {
     const firstname = req.body.firstname;
     const password = req.body.password;
-    const user = store.authenticate(firstname, password)
+    const user = await store.authenticate(firstname, password)
     res.json(user)
 }
 
