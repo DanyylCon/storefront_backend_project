@@ -18,17 +18,13 @@ const show = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
     const user: User = {firstname: req.body.firstname, lastname: req.body.lastname, password: req.body.password}
     try{    
-
         const newUser = await store.create(user);
         const tokenString = process.env.TOKEN_SECRET as string
         const token = jwt.sign({user: newUser}, tokenString )
         res.json(token)
-
     }catch(err){
-
         res.status(400)
         res.json(err)
-
     }
     
 }
@@ -36,8 +32,23 @@ const create = async (req: Request, res: Response) => {
 const authenticate = async (req: Request, res: Response) => {
     const firstname = req.body.firstname;
     const password = req.body.password;
-    const user = await store.authenticate(firstname, password)
-    res.json(user)
+    
+    try{
+        const user = await store.authenticate(firstname, password)
+        if(user){
+            const tokenString = process.env.TOKEN_SECRET as string
+            const token = jwt.sign({user: user}, tokenString )
+            res.json(token)
+        }else{
+            res.send(`Sorry could not authenticate ${firstname}` )
+        }
+    }catch(err){
+        res.status(400)
+        res.json(err)
+    }
+       
+    
+    
 }
 
 const userRoutes = (app: express.Application) => {

@@ -60,7 +60,7 @@ export class UserStore{
         const sql = 'SELECT * FROM users WHERE firstname=($1);'
         const result = await conn.query(sql, [firstname])
 
-        console.log(password+BCRYPT_PEPPER)
+        //console.log(password+BCRYPT_PEPPER)
 
         if(result.rows.length){
 
