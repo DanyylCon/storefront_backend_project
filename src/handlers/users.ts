@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express'
+import express, {Request, Response, NextFunction} from 'express'
 import {User, UserStore} from '../models/user'
 import jwt from 'jsonwebtoken'
 
@@ -45,15 +45,25 @@ const authenticate = async (req: Request, res: Response) => {
     }catch(err){
         res.status(400)
         res.json(err)
-    }
-       
-    
-    
+    }   
 }
 
+const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
+    try{
+        const tokenString = process.env.TOKEN_SECRET as string
+        const authHeader = req.headers.authorization as string
+        const token = authHeader.split(' ')[1]
+        jwt.verify(token, tokenString)
+        next()
+    }catch(err){
+        res.status(401)
+        res.json(`Invalid token ${err}`)    
+    }
+} 
+
 const userRoutes = (app: express.Application) => {
-    app.get('/users', index)
-    app.get('/users/:id', show)
+    app.get('/users', verifyAuthToken, index)
+    app.get('/users/:id', verifyAuthToken, show)
     app.post('/users', create)
     app.post('/users/auth', authenticate)
 }
