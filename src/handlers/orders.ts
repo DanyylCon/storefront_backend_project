@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express'
 import {Order, OrderStore} from '../models/order'
+import { verifyAuthToken } from './users'
 
 const store = new OrderStore()
 
@@ -35,7 +36,7 @@ const deleteOrders = async (req: Request, res: Response) => {
 
 const orderRoutes = (app: express.Application) => {
     app.post('/orders/users/:id', createOrder)
-    app.get('/orders/users/:id', currentByUser)
+    app.get('/orders/users/:id', verifyAuthToken, currentByUser)
     app.delete('/orders', deleteOrders)
 }
 

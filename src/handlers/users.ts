@@ -48,7 +48,7 @@ const authenticate = async (req: Request, res: Response) => {
     }   
 }
 
-const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
+export const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
     try{
         const tokenString = process.env.TOKEN_SECRET as string
         const authHeader = req.headers.authorization as string
@@ -67,5 +67,6 @@ const userRoutes = (app: express.Application) => {
     app.post('/users', create)
     app.post('/users/auth', authenticate)
 }
+
 
 export default userRoutes

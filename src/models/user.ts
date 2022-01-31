@@ -45,7 +45,7 @@ export class UserStore{
                 user.password + BCRYPT_PEPPER, 
                 parseInt(SALT_ROUNDS as string)
             )
-
+                
             const result = await conn.query(sql, [user.firstname, user.lastname, hash])
             conn.release()
             return result.rows[0]

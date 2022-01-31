@@ -1,41 +1,49 @@
-// import {Order, OrderStore} from '../order'
-// import client from '../../database'
-// import { PoolClient } from 'pg'
+import {Order, OrderStore} from '../order'
+import client from '../../database'
+import { UserStore } from '../user'
 
-// const store = new OrderStore()
+const store = new OrderStore()
+let userId: Number;
+const status = 'active';
 
-// describe("Order Model Functions", () => {
+describe('Order Model Defined', () => {
+    it('Should have a create order function', () => {
+        expect(store.createOrder).toBeDefined()
+    })
+    it('Should have a ordersByUser function', () => {
+        expect(store.ordersByUser).toBeDefined()
+    })
+    it('Should have a deleteOrders order function', () => {
+        expect(store.deleteOrders).toBeDefined()
+    })
+})
+
+describe('Order model functions', () => {
+    beforeAll( async ()  => {
+        try{
+            const conn = await client.connect()
+            const sql = "INSERT INTO users (firstname, lastname) VALUES ('John', 'Smith') RETURNING *;"
+            const result = await conn.query(sql)
+            userId = result.rows[0].id
+            conn.release()
+        }catch(err){
+            throw new Error(`Could not create user for testing order model: ${err}`)
+        }
+    })
+
+    it('createOrder function should create order', async () => {
+        const createdOrder = await store.createOrder(userId, status)
+        expect(createdOrder).toEqual({id: 1, user_id: userId, status: status})
+    })
     
-//     let conn: PoolClient
+    it('ordersByUser function should display orders by user id', async () => {
+        const userOrder = await store.ordersByUser(userId)
+        expect(userOrder).toEqual([{id: 1, user_id: userId, status: status}])
+    })
 
-//     beforeAll(async () => {
-//         try{
-//             conn = await client.connect()
-//             let sql = "INSERT INTO products (name, price, category) VALUES ('Tea', 10, 'drinks');"
-//             await conn.query(sql)
-//             sql = "INSERT INTO users (firstname, lastname, password) VALUES ('Keanu','Reeves','matrix');"
-//             await conn.query(sql)
-//             sql = "INSERT INTO orders (product_id, quantity, user_id, status) VALUES (1, 1, 1, 'completed');"
-//             await conn.query(sql)
+    it('deleteOrders function should delete orders', async () => {
+        const deletedOrder = await store.deleteOrders()
+        expect(deletedOrder).toEqual([{id: 1, user_id: userId, status: status}])
+    })
 
-//         }catch(err){
-//             throw new Error(`Could not insert before test ${err}`)
-//         }
-//     })
-
-//     it('Should display order by user', async () => {
-//         const result = await store.ordersByUser(1)
-//         expect(result).toEqual([{id: 1, product_id: 1, quantity: 1, user_id: 1, status: 'completed'}])
-//     })
-
-//     afterAll( async () => {
-//         let sql = 'DELETE FROM orders;'
-//         await conn.query(sql)
-//         sql = 'DELETE FROM users;'
-//         await conn.query(sql)
-//         sql = 'DELETE FROM products;'
-//         await conn.query(sql)
-
-//         conn.release()
-//     })
-// })
+})
