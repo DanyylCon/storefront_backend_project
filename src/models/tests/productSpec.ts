@@ -13,7 +13,9 @@ describe('Product Model Defined', () => {
     it('Should have a create function', () => {
         expect(store.create).toBeDefined()
     })
-
+    it('Should have a productByCategory function', () => {
+        expect(store.productByCategory).toBeDefined()
+    })
 })
 
 describe('Product Model CRUD', () => {
@@ -31,6 +33,11 @@ describe('Product Model CRUD', () => {
     it('Show function should return the correct product', async () => {
         const result = await store.show('1')
         expect(result).toEqual({id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' })
+    })
+    
+    it('productByCategory function should return the correct product', async () => {
+        const result = await store.productByCategory('drinks')
+        expect(result).toEqual([{id: 1, name: 'Herbal Tea', price: 10, category: 'drinks' }])
     })
 
 })
