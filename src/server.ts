@@ -24,3 +24,5 @@ orderRoutes(app)
 app.listen(process.env.PORT, function () {
     console.log(`starting app on: ${address}`)
 })
+
+export default app

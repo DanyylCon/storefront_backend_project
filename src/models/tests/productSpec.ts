@@ -1,7 +1,22 @@
 import {Product, ProductStore} from '../product'
+import app from '../../server'
+import supertest from 'supertest'
 
 const store = new ProductStore()
+const request = supertest(app)
 
+describe('Testing Product endpoints',  () => {
+    it('GET /products', async () => {
+        const response = await request.get('/products')
+        expect(response.status).toBe(200)
+        //done()
+    })
+    it('GET /products', async () => {
+        const response = await request.get('/products/1')
+        expect(response.status).toBe(200)
+        //done()
+    })
+})
 
 describe('Product Model Defined', () => {
     it('Should have an index function', () => {
@@ -41,3 +56,4 @@ describe('Product Model CRUD', () => {
     })
 
 })
+
