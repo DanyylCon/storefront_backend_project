@@ -9,7 +9,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show  '/products/:id' [GET] Display information about a product by referencing its id
 - Create [token required] '/products' [POST] Create a single product 
 - [OPTIONAL] Top 5 most popular products '/fiveMostPopular' [GET] Display the 5 most popular products
-- [OPTIONAL] Products by category (args: product category) '/products/:cat' [GET] Display the products by a certain category
+- [OPTIONAL] Products by category (args: product category) '/products/:cat' [GET] Display the produxcts by a certain category
 
 #### Users
 - Index [token required]   '/users' [GET] Display all the users 
@@ -19,6 +19,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 - Current Order by user (args: user id)[token required] '/orders/users/:id' [GET] Display orders of user where id is the user id stored in the order 
 - [OPTIONAL] Completed Orders by user (args: user id)[token required] '/orders/users/:id/completed' [GET] Display the orders which are completed by referencing the user id stored in the order
+
+*ADDED*
+- Create order (args: user_id, status) '/orders/users/:id' [POST] Create order by using user_id and status
+- Delete orders () '/orders' [DELETE] Deletes all orders (More for testing purposes) 
 
 ## Data Shapes
 #### Product

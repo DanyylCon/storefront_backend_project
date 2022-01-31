@@ -27,8 +27,8 @@ const currentByUser = async (req: Request, res: Response) => {
 
 const deleteOrders = async (req: Request, res: Response) => {
     try{
-        await store.deleteOrders()
-        res.json('Orders have been deleted!')
+        const result = await store.deleteOrders()
+        res.json(result)
     }catch (err){
         res.json(err)
     }
