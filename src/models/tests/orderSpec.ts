@@ -4,7 +4,7 @@ import { UserStore } from '../user'
 
 const store = new OrderStore()
 let userId: Number;
-const status = 'active';
+const status = 'completed';
 
 describe('Order Model Defined', () => {
     it('Should have a create order function', () => {
@@ -39,6 +39,11 @@ describe('Order model functions', () => {
     it('ordersByUser function should display orders by user id', async () => {
         const userOrder = await store.ordersByUser(userId)
         expect(userOrder).toEqual([{id: 1, user_id: userId, status: status}])
+    })
+
+    it('ordersCompleted function should display orders by user id that are completed', async () => {
+        const completedOrders = await store.ordersByUser(userId)
+        expect(completedOrders).toEqual([{id: 1, user_id: userId, status: status}])
     })
 
     it('deleteOrders function should delete orders', async () => {
