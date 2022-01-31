@@ -9,7 +9,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show  '/products/:id' [GET] Display information about a product by referencing its id
 - Create [token required] '/products' [POST] Create a single product 
 - [OPTIONAL] Top 5 most popular products '/fiveMostPopular' [GET] Display the 5 most popular products
-- [OPTIONAL] Products by category (args: product category) '/products/:cat' [GET] Display the produxcts by a certain category
+- [OPTIONAL] Products by category (args: product category) '/products/category/:cat' [GET] Display the products by a certain category
 
 #### Users
 - Index [token required]   '/users' [GET] Display all the users 
