@@ -66,7 +66,7 @@ export class UserStore{
 
             const user = result.rows[0]
             
-            console.log(user)
+            //console.log(user)
 
             if(bcrypt.compareSync(password+BCRYPT_PEPPER, user.password)){
                 return user

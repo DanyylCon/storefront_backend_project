@@ -33,4 +33,9 @@ describe('User Model CRUD', () => {
         const result = await store.show('2')
         expect(result.lastname).toEqual('Reeves')
     })
+
+    it('Authenicate function should return user object once passed', async () => {
+        const authUser = await store.authenticate('Keanu', 'matrix')
+        expect(authUser?.lastname).toEqual('Reeves')
+    })
 })
