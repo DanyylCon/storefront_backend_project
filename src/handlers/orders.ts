@@ -34,10 +34,21 @@ const deleteOrders = async (req: Request, res: Response) => {
     }
 }
 
+const ordersCompleted = async (req: Request, res: Response) => {
+    try{
+        const userId = parseInt(req.params.id)
+        const result = await store.ordersCompleted(userId)
+        res.json(result)
+    }catch(err){
+        res.json(err)
+    }
+}
+
 const orderRoutes = (app: express.Application) => {
     app.post('/orders/users/:id', createOrder)
     app.get('/orders/users/:id', verifyAuthToken, currentByUser)
     app.delete('/orders', deleteOrders)
+    app.get('/orders/users/:id/completed', ordersCompleted)
 }
 
 export default orderRoutes;

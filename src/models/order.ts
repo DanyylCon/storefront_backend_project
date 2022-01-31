@@ -32,15 +32,29 @@ export class OrderStore{
         }
     }
 
+    async ordersCompleted(userId: Number): Promise<Order[]> {
+        try{
+            const conn = await client.connect()
+            const sql = "SELECT * FROM orders WHERE user_id=($1) AND status='completed';"
+            const result = await conn.query(sql, [userId])
+            conn.release()
+            return result.rows
+        }catch(err){
+            throw new Error(`Could not select completed orders by user ${userId}: ${err}`)
+        }
+    }
+
     async deleteOrders(): Promise<Order[]>{
         try{
             const conn = await client.connect()
             const sql = 'DELETE FROM orders RETURNING *;'
             const result = await conn.query(sql)
             conn.release()
-            return result.rows;
+            return result.rows
         }catch (err){
             throw new Error(`Could not delete orders`)
         }
     }
+
+    
 }
