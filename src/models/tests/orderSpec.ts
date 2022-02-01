@@ -70,7 +70,21 @@ describe('Testing Order endpoints',  () => {
           expect(response.statusCode).toBe(200);
         });
     })
- 
+    it('POST /orders/users/:id (createOrder)', async () => {
+        return request
+        .post('/orders/users/1')
+        .then((response) => {
+          expect(response.statusCode).toBe(200);
+        });
+    })  
+    it('DELETE /orders (deleteOrders)', async () => {
+        return request
+        .delete('/orders')
+        .then((response) => {
+          expect(response.statusCode).toBe(200);
+        });
+    })  
+    
     
 })
 
@@ -88,25 +102,24 @@ describe('Order Model Defined', () => {
 
 describe('Order model functions', () => {
 
-
     it('createOrder function should create order', async () => {
         const createdOrder = await orderStore.createOrder(1, status)
-        expect(createdOrder).toEqual({id: 1, user_id: 1, status: status})
+        expect(createdOrder).toEqual({id: 2, user_id: 1, status: status})
     })
     
     it('ordersByUser function should display orders by user id', async () => {
         const userOrder = await orderStore.ordersByUser(1)
-        expect(userOrder).toEqual([{id: 1, user_id: 1, status: status}])
+        expect(userOrder).toEqual([{id: 2, user_id: 1, status: status}])
     })
 
     it('ordersCompleted function should display orders by user id that are completed', async () => {
         const completedOrders = await orderStore.ordersByUser(1)
-        expect(completedOrders).toEqual([{id: 1, user_id: 1, status: status}])
+        expect(completedOrders).toEqual([{id: 2, user_id: 1, status: status}])
     })
 
     it('deleteOrders function should delete orders', async () => {
         const deletedOrder = await orderStore.deleteOrders()
-        expect(deletedOrder).toEqual([{id: 1, user_id: 1, status: status}])
+        expect(deletedOrder).toEqual([{id: 2, user_id: 1, status: status}])
     })
 
 })
