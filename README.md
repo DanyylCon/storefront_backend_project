@@ -58,7 +58,7 @@ is needed to run unit and endpoint testing.
 
 ## Using Postman to communicate with the app
 
-1. Install Postman on your local environment to communicat with app
+1. Install Postman on your local environment to communicate with app
 
 2. npm run start - use this command in the terminal in order to launch the app
 
@@ -104,3 +104,31 @@ is needed to run unit and endpoint testing.
     The response body is the user with the id 1
 
     **ORDERS**
+
+    - POST /orders/users/1
+    
+    Include in the body tab of the request:
+    ```
+    {
+        "status": "completed"
+    }
+    ```
+    The response body will be the order you created with the user id of 1 from params
+
+    - GET /orders/users/1
+
+    In the authorization tab of the request, choose Bearer Token and paste
+    the token from before.
+
+    The response body is an array of orders with user id 1
+
+    - GET /orders/users/1/completed
+
+    In the authorization tab of the request, choose Bearer Token and paste
+    the token from before.
+
+    The response body is an array of completed orders with user id 1
+
+    - DELETE /orders
+
+    The response body is an array of orders which have been deleted
