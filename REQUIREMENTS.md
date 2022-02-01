@@ -26,21 +26,25 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 #### Product
--  id SERIAL PRIMARY KEY integer
-- name VARCHAR
-- price integer
-- [OPTIONAL] category VARCHAR 
+- id                                    SERIAL PRIMARY KEY integer
+- name                                  VARCHAR
+- price                                 integer
+- [OPTIONAL]                            category VARCHAR 
 
 #### User
-- id SERIAL PRIMARY KEY
-- firstName VARCHAR
-- lastName  VARCNAR
-- password  VARCHAR
+- id                                    SERIAL PRIMARY KEY
+- firstName                             VARCHAR
+- lastName                              VARCNAR
+- password                              VARCHAR
 
 #### Orders
 - id                                     SERIAL PRIMARY KEY integer
-- id of each product in the order        FOREIGN KEY integer REFERENCING products.id
-- quantity of each product in the order  integer 
 - user_id                                FOREIGN KEY integer REFERENCING users.id
-- status of order (active or complete)   VARCHAR 
+- status                                 VARCHAR 
+
+#### OrdersProducts
+- id                                     SERIAL PRIMARY KEY integer
+- quantity                               integer 
+- order_id                               integer REFERENCES orders(id)
+- product_id                             integer REFERENCES products(id)
 
