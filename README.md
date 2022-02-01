@@ -43,4 +43,9 @@ TEST_USER_FIRST=John
 TEST_USER_LAST=Smith
 TEST_USER_PASS=testpass
 ```
-
+This is exactly what my .env file looks like but you can and maybe have to change it to work on your machine.
+PORT is the port number on which the app will run. POSTGRES variables are for your local db setup, where HOST
+is your localhost address and DB, DB_TEST, USER and PASSWORD should match the user and dbs you created locally
+from your terminal. ENV is the environment (ie. test or dev). BCRYPT_PEPPER, SALT_ROUNDS are for bcrpyt password
+hashing. TOKEN_SECRET is the string against which jwts are checked. TEST_USER variables are for a test user which
+is needed to run unit and endpoint testing. 
