@@ -20,7 +20,8 @@ describe('User Model Defined', () => {
 describe('User Model CRUD', () => {
 
     it('Create function should create a user', async () => {
-        const result = await store.create({id: 2, firstname: 'Keanu', lastname: 'Reeves', password: 'matrix'})
+        const user: User = {firstname: 'Keanu', lastname: 'Reeves', password: 'matrix'}
+        const result = await store.create(user)
         expect(result.id).toEqual(2)
     })
 
@@ -37,5 +38,5 @@ describe('User Model CRUD', () => {
     it('Authenicate function should return user object once passed', async () => {
         const authUser = await store.authenticate('Keanu', 'matrix')
         expect(authUser?.lastname).toEqual('Reeves')
-    })
+  })
 })

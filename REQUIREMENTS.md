@@ -8,7 +8,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index '/products' [GET] Display all products
 - Show  '/products/:id' [GET] Display information about a product by referencing its id
 - Create [token required] '/products' [POST] Create a single product 
-- [OPTIONAL] Top 5 most popular products '/fiveMostPopular' [GET] Display the 5 most popular products
+- [OPTIONAL] Top 5 most popular products '/fiveMostPopular' [GET] Display the 5 most popular products 
 - [OPTIONAL] Products by category (args: product category) '/products/category/:cat' [GET] Display the products by a certain category
 
 #### Users
@@ -18,7 +18,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - Current Order by user (args: user id)[token required] '/orders/users/:id' [GET] Display orders of user where id is the user id stored in the order 
-- [OPTIONAL] Completed Orders by user (args: user id)[token required] '/orders/users/:id/completed' [GET] Display the orders which are completed by referencing the user id stored in the order
+- [OPTIONAL] Completed Orders by user (args: user id)[token required] '/orders/users/:id/completed' [GET] Display the orders which are completed by referencing the user id stored in the order 
 
 *ADDED*
 - Create order (args: user_id, status) '/orders/users/:id' [POST] Create order by using user_id and status

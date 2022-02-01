@@ -48,7 +48,7 @@ const orderRoutes = (app: express.Application) => {
     app.post('/orders/users/:id', createOrder)
     app.get('/orders/users/:id', verifyAuthToken, currentByUser)
     app.delete('/orders', deleteOrders)
-    app.get('/orders/users/:id/completed', ordersCompleted)
+    app.get('/orders/users/:id/completed', verifyAuthToken, ordersCompleted)
 }
 
 export default orderRoutes;
