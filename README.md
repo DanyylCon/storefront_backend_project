@@ -62,7 +62,7 @@ is needed to run unit and endpoint testing.
 
 2. npm run start - use this command in the terminal in order to launch the app
 
-3. # Use these HTTP verbs, routes and include the proper auth and body
+3. **Use these HTTP verbs, routes and include the proper auth and body**
     **USERS**
     - POST /users
     Include in the body tab of the request:
