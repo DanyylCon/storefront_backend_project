@@ -49,3 +49,11 @@ is your localhost address and DB, DB_TEST, USER and PASSWORD should match the us
 from your terminal. ENV is the environment (ie. test or dev). BCRYPT_PEPPER, SALT_ROUNDS are for bcrpyt password
 hashing. TOKEN_SECRET is the string against which jwts are checked. TEST_USER variables are for a test user which
 is needed to run unit and endpoint testing. 
+
+6. npm run test - command to run all tests
+
+7. db-mirgate up - command to run the migrations to create the tables we need to use the app
+
+8. npm run start - command to start the app
+
+## Using Postman to communicate with the app
