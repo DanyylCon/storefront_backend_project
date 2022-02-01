@@ -20,6 +20,24 @@ to create the development and test databases:
 - GRANT ALL PRIVILEGES ON DATABASE test TO danny;
 
 This will create the databases that we will use and run our migrations on. 
-==Note: username (danny), password and database names (shop & test) can be changed to 
-anything you like but they will have to match your environment variables.==
+**Note: username (danny), password and database names (shop & test) can be changed to 
+anything you like but they will have to match your environment variables.**
+3. Clone this repo to your local machine
+4. Run the command 'npm install' to install all the dependencies needed
+5. Create a .env file and add the following environment variables: 
+```
+PORT=3001
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=shop
+POSTGRES_DB_TEST=test
+POSTGRES_USER=danny
+POSTGRES_PASSWORD=password123
+ENV=dev
+BCRYPT_PEPPER=secretpass
+SALT_ROUNDS=10
+TOKEN_SECRET=bigsecret
+TEST_USER_FIRST=John
+TEST_USER_LAST=Smith
+TEST_USER_PASS=testpass
+```
 
