@@ -22,8 +22,11 @@ to create the development and test databases:
 This will create the databases that we will use and run our migrations on. 
 **Note: username (danny), password and database names (shop & test) can be changed to 
 anything you like but they will have to match your environment variables.**
+
 3. Clone this repo to your local machine
+
 4. Run the command 'npm install' to install all the dependencies needed
+
 5. Create a .env file and add the following environment variables: 
 ```
 PORT=3001
