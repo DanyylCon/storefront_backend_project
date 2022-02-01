@@ -132,3 +132,32 @@ is needed to run unit and endpoint testing.
     - DELETE /orders
 
     The response body is an array of orders which have been deleted
+
+    **PRODUCTS**
+
+    - POST /products
+    
+    In the authorization tab of the request, choose Bearer Token and paste
+    the token from before.
+
+    Include in the body tab of the request:
+    ```
+    {
+        "name": "Cheese",
+        "price": "100",
+        "category": "dairy"
+    }
+    ```
+    The response body will be the product which you created
+
+    - GET /products
+
+    The response body is a list of products
+
+    - GET /products/1
+
+    The response body is the product with id 1
+
+    - GET /products/category/dairy
+
+    The response body is an array of products in the dairy category
