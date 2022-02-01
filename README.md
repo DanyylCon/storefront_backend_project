@@ -20,6 +20,6 @@
         -GRANT ALL PRIVILEGES ON DATABASE test TO danny;
 
         This will create the databases that we will use and run our migrations on. 
-        == Note: username (danny), password and database names (shop & test) can be changed to 
-        anything you like but they will have to match your environment variables. ==
+        ==Note: username (danny), password and database names (shop & test) can be changed to 
+        anything you like but they will have to match your environment variables.==
 
