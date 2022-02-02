@@ -5,14 +5,22 @@ import jwt from 'jsonwebtoken'
 const store = new UserStore()
 
 const index = async (req: Request, res: Response) => {
-    const users = await store.index()
-    res.json(users)
+    try{
+        const users = await store.index()
+        res.json(users)
+    }catch(err){
+        res.json(err)
+    }
 }
 
 const show = async (req: Request, res: Response) => {
-    const id = req.params.id as string
-    const user = await store.show(id) 
-    res.json(user)
+    try{
+        const id = req.params.id as string
+        const user = await store.show(id) 
+        res.json(user)
+    }catch(err){
+        res.json(err)
+    }
 }
 
 const create = async (req: Request, res: Response) => {
@@ -67,6 +75,5 @@ const userRoutes = (app: express.Application) => {
     app.post('/users', create)
     app.post('/users/auth', authenticate)
 }
-
 
 export default userRoutes
