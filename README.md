@@ -9,6 +9,7 @@ concepts like DB migrations, CORS, REST, password hash/salt/pepper (bcrypt) and 
 1. Install postgres and psql locally. Install postgres on to your local environment in order 
 to use the features of the database. You can also install psql or use a different terminal to 
 work on your local postgres database.
+
 **It is important to set up the database to run on port 5432! This is the standard port for 
 postgres and it is the one the database will be using!**
 
