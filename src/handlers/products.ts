@@ -5,14 +5,22 @@ import { verifyAuthToken } from './users'
 const store = new ProductStore()
 
 const index = async (req: Request, res: Response) => {
-    const products = await store.index()
-    res.json(products)
-}
+    try{
+        const products = await store.index()
+        res.json(products)    
+    }catch(err){
+        res.json(err);
+    }
+    }
 
 const show = async (req: Request, res: Response) => {
-    const id = req.params.id as string
-    const product = await store.show(id)
-    res.json(product)
+    try{
+        const id = req.params.id as string
+        const product = await store.show(id)
+        res.json(product)
+    }catch(err){
+        res.json(err);
+    }    
 }
 
 const create = async (req: Request, res: Response) => {
@@ -30,8 +38,12 @@ const create = async (req: Request, res: Response) => {
 }
 
 const productByCategory = async (req: Request, res: Response) => {
-    const result = await store.productByCategory(req.params.cat)
-    res.json(result)
+    try{
+        const result = await store.productByCategory(req.params.cat)
+        res.json(result)
+    }catch(err){
+        res.json(err)
+    }
 }
 
 
